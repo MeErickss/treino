@@ -1,0 +1,19 @@
+{
+  "name": "Treino",
+  "short_name": "Treino",
+  "description": "Meu treino pessoal — rotinas, cargas e progressão",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f0f12",
+  "theme_color": "#0f0f12",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

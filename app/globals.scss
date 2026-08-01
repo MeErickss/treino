@@ -1,0 +1,233 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background:
+    radial-gradient(1200px 600px at 100% -10%, rgba(34, 197, 94, 0.1), transparent 60%),
+    radial-gradient(900px 500px at -10% 110%, rgba(34, 197, 94, 0.07), transparent 55%),
+    #0f0f12;
+  background-attachment: fixed;
+  color: #e6e6e6;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+// container principal, otimizado pra celular
+.app-shell {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 16px 16px 96px;
+  min-height: 100dvh;
+}
+
+.page-title {
+  margin: 4px 0 16px;
+}
+
+// respeita a área segura de iPhones com notch quando instalado
+@supports (padding: max(0px)) {
+  .app-shell {
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Animações e polish
+// ---------------------------------------------------------------------------
+
+// título com gradiente verde
+.grad-title {
+  background: linear-gradient(95deg, #22c55e 0%, #4ade80 45%, #86efac 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: -0.5px;
+}
+
+// foguinho que tremeluz
+@keyframes flameFlicker {
+  0%,
+  100% {
+    transform: scale(1) rotate(-2deg);
+    filter: drop-shadow(0 0 3px rgba(34, 197, 94, 0.55));
+  }
+  25% {
+    transform: scale(1.15) rotate(2deg);
+    filter: drop-shadow(0 0 9px rgba(74, 222, 128, 0.95));
+  }
+  50% {
+    transform: scale(1.03) rotate(-1deg);
+    filter: drop-shadow(0 0 5px rgba(34, 197, 94, 0.8));
+  }
+  75% {
+    transform: scale(1.18) rotate(3deg);
+    filter: drop-shadow(0 0 11px rgba(134, 239, 172, 0.95));
+  }
+}
+
+.anim-flame {
+  display: inline-flex;
+  transform-origin: center bottom;
+  animation: flameFlicker 1.8s ease-in-out infinite;
+}
+
+// raio elétrico pulsante
+@keyframes sparkPulse {
+  0%,
+  40%,
+  100% {
+    transform: scale(1) rotate(0deg);
+    filter: drop-shadow(0 0 2px rgba(34, 197, 94, 0.5));
+  }
+  8% {
+    transform: scale(1.3) rotate(-8deg);
+    filter: drop-shadow(0 0 12px rgba(134, 239, 172, 1));
+  }
+  16% {
+    transform: scale(0.92) rotate(6deg);
+  }
+  24% {
+    transform: scale(1.12) rotate(-4deg);
+    filter: drop-shadow(0 0 8px rgba(34, 197, 94, 0.95));
+  }
+  32% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+.anim-spark {
+  display: inline-flex;
+  animation: sparkPulse 2.6s ease-in-out infinite;
+}
+
+// músculo "flexionando"
+@keyframes muscleFlex {
+  0%,
+  55%,
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+  65% {
+    transform: scale(1.28) rotate(-12deg);
+  }
+  75% {
+    transform: scale(1.14) rotate(-5deg);
+  }
+  85% {
+    transform: scale(1.3) rotate(-14deg);
+  }
+}
+
+.anim-muscle {
+  display: inline-block;
+  transform-origin: 70% 70%;
+  animation: muscleFlex 2.4s ease-in-out infinite;
+}
+
+// entrada dos cards
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.5s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+
+// glow pulsante (treino em andamento / exercício concluído)
+@keyframes glowPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 rgba(34, 197, 94, 0);
+    border-color: rgba(34, 197, 94, 0.45);
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(34, 197, 94, 0.4);
+    border-color: rgba(34, 197, 94, 0.9);
+  }
+}
+
+.glow-pulse {
+  animation: glowPulse 2.2s ease-in-out infinite;
+}
+
+// "pop" ao concluir a série
+@keyframes popIn {
+  0% {
+    transform: scale(0.5);
+  }
+  60% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.pop-in {
+  animation: popIn 0.32s cubic-bezier(0.2, 0.8, 0.3, 1.4);
+}
+
+// desenho da linha do gráfico
+@keyframes dashDraw {
+  from {
+    stroke-dashoffset: 1200;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+// microinterações
+.pressable {
+  transition: transform 0.12s ease;
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+// transições suaves nos cards do antd
+.ant-card {
+  transition: transform 0.18s ease, box-shadow 0.2s ease, border-color 0.3s ease !important;
+}
+
+.ant-card.ant-card-hoverable:active {
+  transform: scale(0.985);
+}
+
+// botões um pouco mais vivos
+.ant-btn {
+  transition: transform 0.12s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  &:active {
+    transform: scale(0.96);
+  }
+}
+
+.ant-btn-primary {
+  box-shadow: 0 4px 14px rgba(34, 197, 94, 0.28);
+}
+
+// acessibilidade: desliga tudo se a pessoa pediu menos movimento
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

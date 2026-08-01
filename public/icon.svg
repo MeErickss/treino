@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="112" fill="#0f0f12"/>
+  <g stroke="#22c55e" stroke-width="26" stroke-linecap="round" fill="none">
+    <!-- barra central -->
+    <line x1="168" y1="256" x2="344" y2="256"/>
+    <!-- pesos da esquerda -->
+    <line x1="140" y1="196" x2="140" y2="316"/>
+    <line x1="104" y1="216" x2="104" y2="296"/>
+    <!-- pesos da direita -->
+    <line x1="372" y1="196" x2="372" y2="316"/>
+    <line x1="408" y1="216" x2="408" y2="296"/>
+  </g>
+</svg>
